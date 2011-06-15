@@ -47,10 +47,7 @@ sub _get_values_by_keys {
 sub run {
     my $self = shift;
 
-    my %items;
-    $items{keys} = { $self->_get_values_by_keys };
-    
-    return %items;
+    return $self->_get_values_by_keys;
 }
 
 1;

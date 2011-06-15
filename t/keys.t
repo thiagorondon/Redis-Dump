@@ -23,6 +23,6 @@ $r->set( foo => 1 );
 $r->set( 'bar-test' => 2 );
 
 is_deeply( [ $dump->_get_keys ], [ 'foo', 'bar-test' ] );
-is_deeply( { $dump->run }, { keys => { 'bar-test' => '2', 'foo' => '1' } } );
+is_deeply( { $dump->run }, { 'bar-test' => '2', 'foo' => '1' } );
 
 done_testing();
