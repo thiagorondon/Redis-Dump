@@ -30,6 +30,7 @@ sub _get_values_by_keys {
     foreach my $key ($self->_get_keys) {
         my $type = $self->conn->type($key);
         $keys{$key} = $self->conn->get($key) if $type eq 'string';
+        $keys{$key} = $self->conn->lrange($key, 0, -1) if $type eq 'list';
     }
     return %keys;
 }
