@@ -22,6 +22,6 @@ ok( my $dump = Redis::Dump->new( server => $srv ), 'run redis-dump' );
 $r->zadd( 'zlist', 1, 'foo' );
 $r->zadd( 'zlist', 2, 'bar' );
 
-is_deeply( [ $dump->run ], [ zlist => [ 'foo', 'bar' ] ] );
+is_deeply( { $dump->run }, { 'zlist' => [ { '1' => 'foo', '2' => 'bar' } ] } );
 
 done_testing();

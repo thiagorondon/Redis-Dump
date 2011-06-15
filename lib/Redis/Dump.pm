@@ -34,7 +34,17 @@ sub _get_value {
     return $self->_conn->get($key) if $type eq 'string';
     return $self->_conn->lrange( $key, 0, -1 ) if $type eq 'list';
     return $self->_conn->smembers($key) if $type eq 'set';
-    return $self->_conn->zrange( $key, 0, -1 ) if $type eq 'zset';
+
+    if ( $type eq 'zset' ) {
+        my %hash;
+        my @zsets = $self->_conn->zrange( $key, 0, -1, 'withscores' );
+        for ( my $loop = 0 ; $loop < scalar(@zsets) / 2 ; $loop++ ) {
+            my $value = $zsets[ $loop * 2 ];
+            my $score = $zsets[ ( $loop * 2 ) + 1 ];
+            $hash{$score} = $value;
+        }
+        return [ { %hash } ];
+    }
 
     if ( $type eq 'hash' ) {
         my %hash;
