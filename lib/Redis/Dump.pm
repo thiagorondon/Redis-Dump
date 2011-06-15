@@ -59,9 +59,22 @@ sub _get_values_by_keys {
 
 Backup and restore your Redis data to and from JSON.
 
+
+    $ redis-dump --server 127.0.0.1:6379 --filter foo
+    {
+           "foo" : "1",
+    }
+     
 =head2 run
 
-Run app
+You can use as a module.
+
+    use Redis::Dump;
+    use Data::Dumper;
+
+    my $dump = Redis::Dump({ server => '127.0.0.16379', filter => 'foo' });
+
+    print Dumper( \$dump->run );
 
 =cut
 
