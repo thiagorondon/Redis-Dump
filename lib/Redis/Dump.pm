@@ -4,7 +4,7 @@ package Redis::Dump;
 use Moose;
 with 'MooseX::Getopt';
 
-use Redis;
+use Redis 1.904;
 
 # ABSTRACT: Backup and restore your Redis data to and from JSON.
 # VERSION
