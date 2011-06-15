@@ -1,7 +1,12 @@
 #!/usr/bin/perl
 
+package Redis::Runner;
+
+use strict;
 use Redis::Dump;
 use JSON;
+
+# VERSION
 
 my $app = Redis::Dump->new_with_options();
 

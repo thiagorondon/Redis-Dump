@@ -1,11 +1,13 @@
 
-
 package Redis::Dump;
 
 use Moose;
 with 'MooseX::Getopt';
 
 use Redis;
+
+# ABSTRACT: Backup and restore your Redis data to and from JSON.
+# VERSION
 
 has server => (
     is => 'rw',
@@ -31,7 +33,7 @@ sub _get_values_by_keys {
         my $type = $self->conn->type($key);
         $keys{$key} = $self->conn->get($key) if $type eq 'string';
         $keys{$key} = $self->conn->lrange($key, 0, -1) if $type eq 'list';
-        
+
         if ($type eq 'hash') {
             my %hash;
             my @hashs = $self->conn->hkeys($key);
@@ -43,6 +45,16 @@ sub _get_values_by_keys {
     }
     return %keys;
 }
+
+=head1 DESCRIPTION
+
+Backup and restore your Redis data to and from JSON.
+
+=head2 run
+
+Run app
+
+=cut
 
 sub run {
     my $self = shift;
