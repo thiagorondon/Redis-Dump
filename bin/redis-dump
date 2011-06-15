@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+
+use Redis::Dump;
+use JSON;
+
+my $app = Redis::Dump->new_with_options();
+
+print to_json( { $app->run }, { ascii => 1, pretty => 1 } );
+
