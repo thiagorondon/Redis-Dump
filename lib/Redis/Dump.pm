@@ -10,7 +10,7 @@ use Redis 1.904;
 # VERSION
 
 has _conn => (
-    is       => 'rw',
+    is       => 'ro',
     isa      => 'Redis',
     init_arg => undef,
     lazy     => 1,
