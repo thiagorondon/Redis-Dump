@@ -22,6 +22,13 @@ has conn => (
     default => sub { Redis->new( server => shift->server ) }
 );
 
+has filter => (
+    is => 'rw',
+    isa => 'Str',
+    default => '',
+    predicate => 'has_filter'
+);
+
 sub _get_keys {
     shift->conn->keys("*");
 }
@@ -30,6 +37,8 @@ sub _get_values_by_keys {
     my $self = shift;
     my %keys;
     foreach my $key ($self->_get_keys) {
+        next if $self->has_filter and $key !~ $self->filter;
+
         my $type = $self->conn->type($key);
         $keys{$key} = $self->conn->get($key) if $type eq 'string';
         $keys{$key} = $self->conn->lrange($key, 0, -1) if $type eq 'list';
