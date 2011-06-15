@@ -43,6 +43,7 @@ sub _get_values_by_keys {
         $keys{$key} = $self->conn->get($key) if $type eq 'string';
         $keys{$key} = $self->conn->lrange($key, 0, -1) if $type eq 'list';
         $keys{$key} = $self->conn->smembers($key) if $type eq 'set';
+        $keys{$key} = $self->conn->zrange($key, 0, -1) if $type eq 'zset';
 
         if ($type eq 'hash') {
             my %hash;
