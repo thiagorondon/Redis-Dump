@@ -25,7 +25,7 @@ sub _get_type_and_filter {
     my ( $self, $key ) = @_;
     return if $self->has_filter and not $key =~ $self->filter;
     my $type = $self->_conn->type($key);
-    return if @{ $self->type } and not grep { /^$type/ } @{ $self->type };
+    return if @{ $self->type } and not grep {/^$type/} @{ $self->type };
     return $type;
 }
 
@@ -38,12 +38,12 @@ sub _get_value {
     if ( $type eq 'zset' ) {
         my %hash;
         my @zsets = $self->_conn->zrange( $key, 0, -1, 'withscores' );
-        for ( my $loop = 0 ; $loop < scalar(@zsets) / 2 ; $loop++ ) {
+        for ( my $loop = 0; $loop < scalar(@zsets) / 2; $loop++ ) {
             my $value = $zsets[ $loop * 2 ];
             my $score = $zsets[ ( $loop * 2 ) + 1 ];
             $hash{$score} = $value;
         }
-        return [ { %hash } ];
+        return [ {%hash} ];
     }
 
     if ( $type eq 'hash' ) {
@@ -114,7 +114,7 @@ Host:Port of redis server, example: 127.0.0.1:6379.
 =cut
 
 has server => (
-    is            => 'rw',
+    is            => 'ro',
     isa           => 'Str',
     default       => '127.0.0.1:6379',
     documentation => 'Host:Port of redis server (ex. 127.0.0.1:6379)'
@@ -127,7 +127,7 @@ String to filter keys stored in redis server.
 =cut
 
 has filter => (
-    is            => 'rw',
+    is            => 'ro',
     isa           => 'Str',
     default       => '',
     predicate     => 'has_filter',
@@ -143,7 +143,7 @@ It can be: lists, sets, hashs, strings, zsets
 =cut
 
 has type => (
-    is            => 'rw',
+    is            => 'ro',
     isa           => 'ArrayRef[Str]',
     default       => sub { [] },
     predicate     => 'has_type',
@@ -157,7 +157,7 @@ If you want to show type with key name.
 =cut
 
 has show_type => (
-    is            => 'rw',
+    is            => 'ro',
     isa           => 'Bool',
     default       => 0,
     documentation => 'If you want to show type with key name.'

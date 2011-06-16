@@ -15,8 +15,7 @@ use Test::SpawnRedisServer;
 my ( $c, $srv ) = redis();
 END { $c->() if $c }
 
-ok( my $r = Redis->new( server => $srv ),
-    'connected to our test redis-server' );
+ok( my $r = Redis->new( server => $srv ), 'connected to our test redis-server' );
 ok( my $dump = Redis::Dump->new( server => $srv ), 'run redis-dump' );
 
 $r->rpush( 'mlist', 1 );
