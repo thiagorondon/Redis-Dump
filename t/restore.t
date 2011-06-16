@@ -27,8 +27,7 @@ if ( !-r $filename ) {
 ok( my $r = Redis->new( server => $srv ), 'connected to our test redis-server' );
 
 $r->set( foo => 1 );
-
-#$r->hset( 'mhash', 'f1', 1 );
+$r->hset( 'mhash', 'f1', 1 );
 $r->rpush( 'mlist', 1 );
 $r->sadd( 'slist', 2 );
 $r->zadd( 'zlist', 1, 'foo' );

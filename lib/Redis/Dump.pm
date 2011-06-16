@@ -175,6 +175,10 @@ beer.
 
 L<http://www.github.com/maluco/Redis-Dump>
 
+=head1 SEE ALSO
+
+L<Redis::Dump::Restore>, L<App::Redis::Dump>, L<App::Redis::Dump::Restore>
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.

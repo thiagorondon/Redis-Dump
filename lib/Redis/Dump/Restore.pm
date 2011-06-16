@@ -47,7 +47,15 @@ sub _set_hash {
 
     my %sets = %{$value};
     foreach my $item ( keys %sets ) {
-        $self->sadd( $name, $item, $sets{$item} );
+        my $type = ref($item);
+        $self->sadd( $name, $item, $sets{$item} ) if !$type;    # smembers
+
+        if ( $type eq 'HASH' ) {
+            my %hashs = %{$item};
+            foreach my $key ( keys %hashs ) {
+                $self->_conn->hset( $name, $key, $hashs{$key} );
+            }
+        }
     }
 }
 
@@ -154,6 +162,10 @@ is located on github. Feel free to send a bug report, a pull request, or a
 beer.
 
 L<http://www.github.com/maluco/Redis-Dump>
+
+=head1 SEE ALSO
+
+L<Redis::Dump>, L<App::Redis::Dump>, L<App::Redis::Dump::Restore>
 
 =head1 SUPPORT
 

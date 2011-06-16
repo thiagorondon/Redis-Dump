@@ -32,6 +32,10 @@ configuration, and return a JSON with data.
 
 See L<Redis::Dump::Restore> for more information.
 
+=head1 SEE ALSO
+
+L<Redis::Dump>, L<Redis::Dump::Restore>, L<App::Redis::Dump>
+
 =head1 DEPENDENCIES
 
 =over 4
