@@ -6,7 +6,7 @@ with 'MooseX::Getopt';
 
 use Redis 1.904;
 
-# ABSTRACT: Backup and restore your Redis data to and from JSON.
+# ABSTRACT: It's a simple way to dump data from redis-server
 # VERSION
 
 has _conn => (
