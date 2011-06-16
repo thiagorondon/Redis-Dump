@@ -25,7 +25,7 @@ sub _get_type_and_filter {
     my ( $self, $key ) = @_;
     return if $self->has_filter and not $key =~ $self->filter;
     my $type = $self->_conn->type($key);
-    return if @{ $self->type } and not grep { /$type/ } @{ $self->type };
+    return if @{ $self->type } and not grep { /^$type/ } @{ $self->type };
     return $type;
 }
 
@@ -138,7 +138,7 @@ has filter => (
 
 If you want to get just some types of keys.
 
-It can be: lists, sets, hashs, strings
+It can be: lists, sets, hashs, strings, zsets
 
 =cut
 
