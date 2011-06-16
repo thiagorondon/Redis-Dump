@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-package Redis::Runner;
+package App::Redis::Dump;
 
 use strict;
 use Redis::Dump;
@@ -11,4 +11,96 @@ use JSON;
 my $app = Redis::Dump->new_with_options();
 
 print to_json( { $app->run }, { ascii => 1, pretty => 1 } );
+
+1;
+
+__END__
+
+=head1 SYNOPSIS
+
+    redis-dump --server 127.0.0.1:6379 --filter foo
+    {
+        "foo" : "1",
+    }
+
+    redis-dump --type list --filter my --show_type
+    {
+      "mylist (list)" : [
+            "{\"uuid\":\"F3D4BA06-9793-11E0-AAB9-D0A1E5EB3B8E\",\"from_number\":\"0000\",\"customer\":\"21\"\"}",
+            ]
+    }
+
+
+Run C<redis-dump -h> for more options.
+
+=head1 DESCRIPTION
+
+redis-dump is a script to dump your redis server, requires zero
+configuration, and return a JSON with data.
+
+See L<Redis::Dump> for more information.
+
+=head1 DEPENDENCIES
+
+=over 4
+
+=item *
+
+L<Moose>
+
+=item *
+
+L<MooseX::Getopt>
+
+=item *
+
+L<Redis>
+
+=back
+
+=head1 DEVELOPMENT
+
+Redis::Dump is a open source project for everyone to participate. The code repository
+is located on github. Feel free to send a bug report, a pull request, or a
+beer.
+
+L<http://www.github.com/maluco/Redis-Dump>
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+perldoc Redis::Dump
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Redis-Dump>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/Redis-Dump>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/Redis-Dump>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/Redis-Dump>
+
+=back
+
+=cut
+
+=head1 NO WARRANTY
+
+This software is provided "as-is," without any express or implied
+warranty. In no event shall the author be held liable for any damages
+arising from the use of the software.
+
+=cut
 

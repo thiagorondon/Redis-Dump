@@ -70,15 +70,18 @@ sub _get_values_by_keys {
 
 =head1 SYNOPSIS
 
-    $ redis-dump --server 127.0.0.1:6379 --filter foo
-    {
-           "foo" : "1",
-    }
+    use Redis::Dump;
+    use Data::Dumper;
+
+    my $dump = Redis::Dump({ server => '127.0.0.6379', filter => 'foo' });
+
+    print Dumper( \$dump->run );
+
 
 =head1 DESCRIPTION
 
 It's a simple way to dump data from redis-server in JSON format or any format
-you want (you can use Redis::Dump class).
+you want.
 
 =head1 COMMAND LINE API
 
@@ -92,14 +95,7 @@ Provided by L<MooseX::Getopt>. Parses attributes init args from @ARGV.
 
 =head2 run
 
-Perfomas the actual dump, and you can use your code as:
-
-    use Redis::Dump;
-    use Data::Dumper;
-
-    my $dump = Redis::Dump({ server => '127.0.0.6379', filter => 'foo' });
-
-    print Dumper( \$dump->run );
+Perfomas the actual dump.
 
 =cut
 
