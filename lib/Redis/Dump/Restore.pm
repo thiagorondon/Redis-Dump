@@ -8,7 +8,7 @@ with 'MooseX::Getopt';
 
 use Redis 1.904;
 
-# ABSTRACT: It's a simple way to restore data to redis-server based on redis-dump
+# ABSTRACT: It's a simple way to restore data to redis-server based on redis-dump.
 # VERSION
 
 has _conn => (
@@ -78,13 +78,12 @@ sub _set_values_by_keys {
 
     use Redis::Dump::Restore;
 
-    my $restore = Redis::Dump::Restore({ server => '127.0.0.6379', file => 'foo.txt');
+    my $restore = Redis::Dump::Restore->new({ server => '127.0.0.6379', file => 'foo.txt');
 
 
 =head1 DESCRIPTION
 
-It's a simple way to retore data to redis-server in JSON format or any format
-you want.
+It's a simple way to restore data to redis-server based on redis-dump (JSON).
 
 =head1 COMMAND LINE API
 

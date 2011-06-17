@@ -6,6 +6,7 @@ use strict;
 use Redis::Dump;
 use JSON;
 
+# ABSTRACT: It's a simple way to dump and backup data from redis-server.
 # VERSION
 
 my $app = Redis::Dump->new_with_options();

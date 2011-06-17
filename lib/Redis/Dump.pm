@@ -6,7 +6,7 @@ with 'MooseX::Getopt';
 
 use Redis 1.904;
 
-# ABSTRACT: It's a simple way to dump data from redis-server
+# ABSTRACT: It's a simple way to dump and backup data from redis-server
 # VERSION
 
 has _conn => (
@@ -73,7 +73,7 @@ sub _get_values_by_keys {
     use Redis::Dump;
     use Data::Dumper;
 
-    my $dump = Redis::Dump({ server => '127.0.0.6379', filter => 'foo' });
+    my $dump = Redis::Dump->new({ server => '127.0.0.6379', filter => 'foo' });
 
     print Dumper( \$dump->run );
 

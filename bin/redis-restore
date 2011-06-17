@@ -4,9 +4,8 @@ package App::Redis::Dump::Restore;
 
 use strict;
 use Redis::Dump::Restore;
-use JSON;
-use Data::Dumper;
 
+# ABSTRACT: It's a simple way to restore data to redis-server based on redis-dump.
 # VERSION
 
 print "WARNING! Note that this software should be considered experimental !\n";
