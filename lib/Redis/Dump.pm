@@ -62,8 +62,8 @@ sub _get_values_by_keys {
     foreach my $key ( $self->_get_keys ) {
         my $type = $self->_get_type_and_filter($key) or next;
         my $show_name = $key;
-        $show_name .= " ($type)" if $self->show_type;
-        $keys{$show_name} = $self->_get_value( $key, $type );
+        $show_name .= " ($type)" if $self->showtype;
+        $keys{$show_name} = $self->hidevalues ? '' : $self->_get_value( $key, $type );
     }
     return %keys;
 }
@@ -150,17 +150,30 @@ has type => (
     documentation => 'Show just this type of key',
 );
 
-=head2 show_type
+=head2 show-type
 
 If you want to show type with key name.
 
 =cut
 
-has show_type => (
+has showtype => (
     is            => 'ro',
     isa           => 'Bool',
     default       => 0,
     documentation => 'If you want to show type with key name.'
+);
+
+=head2 hidevalues
+
+Hide value of keys.
+
+=cut
+
+has hidevalues => (
+    is            => 'ro',
+    isa           => 'Bool',
+    default       => 0,
+    documentation => 'Hide values of keys'
 );
 
 1;
