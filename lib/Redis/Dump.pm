@@ -18,7 +18,10 @@ has _conn => (
 );
 
 sub _get_keys {
-    shift->_conn->keys("*");
+    my $self   = shift;
+    my $filter = $self->filter;
+    return $self->_conn->keys("*$filter*") if $filter;
+    return $self->_conn->keys("*");
 }
 
 sub _get_type_and_filter {
