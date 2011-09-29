@@ -11,7 +11,10 @@ use JSON;
 
 my $app = Redis::Dump->new_with_options();
 
-print to_json( { $app->run }, { ascii => 1, pretty => 1 } );
+print to_json( { $app->run } , { ascii => 1, pretty => 1 } );
+
+#print to_json( { $app->run_config }, { ascii => 1, pretty => 1 } ) if $app->config;
+
 
 1;
 

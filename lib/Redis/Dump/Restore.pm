@@ -62,9 +62,9 @@ sub _set_hash {
 sub _set_values_by_keys {
     my $self = shift;
 
+    my %keys = %{ from_json( $self->file->slurp ) };
     $self->_conn->flushall if $self->flushall;
 
-    my %keys = %{ from_json( $self->file->slurp ) };
     foreach my $key ( keys %keys ) {
         my $type = ref( $keys{$key} );
         $self->_set_string( $key, $keys{$key} ) if !$type;
