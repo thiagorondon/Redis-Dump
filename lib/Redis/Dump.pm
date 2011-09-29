@@ -71,19 +71,6 @@ sub _get_values_by_keys {
     return %keys;
 }
 
-sub _get_config {
-    my $self = shift;
-    my %cf; 
-    my @configs = $self->_conn->config('get', '*');
-    for ( my $loop = 0; $loop < scalar(@configs) / 2; $loop++ ) {
-        my $name = $configs[ $loop * 2 ];
-        my $value = $configs[ ( $loop * 2 ) + 1 ] || '';
-        $cf{$name} = $value;
-    }
-
-    return { %cf };
-}
-
 
 =head1 SYNOPSIS
 
@@ -119,11 +106,6 @@ Perfomas the actual dump.
 sub run {
     my $self = shift;
     return $self->_get_values_by_keys; 
-}
-
-sub run_config {
-    my $self = shift;
-    return $self->config ? $self->_get_config : {}, 
 }
 
 =head1 ATTRIBUTES
@@ -182,19 +164,6 @@ has showtype => (
     isa           => 'Bool',
     default       => 0,
     documentation => 'If you want to show type with key name.'
-);
-
-=head2 config
-
-Show config parameters.
-
-=cut
-
-has config => (
-    is => 'ro',
-    isa => 'Bool',
-    default => 0,
-    documentation => 'Show config parameters'
 );
 
 =head2 hidevalues
