@@ -105,7 +105,7 @@ Perfomas the actual dump.
 
 sub run {
     my $self = shift;
-    return $self->_get_values_by_keys; 
+    return $self->_get_values_by_keys;
 }
 
 =head1 ATTRIBUTES

@@ -111,7 +111,7 @@ has filter => (
     documentation => 'String to filter keys stored in redis server'
 );
 
-=head2 restore 
+=head2 restore
 
 Restore a config redis server to the server.
 

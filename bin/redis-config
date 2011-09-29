@@ -19,7 +19,7 @@ __END__
 
 =head1 SYNOPSIS
 
-    redis-config --server 127.0.0.1:6379 
+    redis-config --server 127.0.0.1:6379
     {
 	   "requirepass" : "",
 	   "dbfilename" : "dump.rdb",
@@ -39,7 +39,7 @@ __END__
 	   "appendonly" : "no",
 	   "masterauth" : "",
 	   "hash-max-zipmap-entries" : "512"
-    
+
 	}
 
 Run C<redis-config -h> for more options.
