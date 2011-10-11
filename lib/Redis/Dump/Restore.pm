@@ -16,7 +16,12 @@ has _conn => (
     isa      => 'Redis',
     init_arg => undef,
     lazy     => 1,
-    default  => sub { Redis->new( server => shift->server ) }
+    default  => sub {
+        my $tconf = shift;
+        my $tconn = Redis->new( server => $tconf->server );
+        $tconn->select( $tconf->database);
+        $tconn
+    }
 );
 
 sub _set_string {
@@ -122,6 +127,19 @@ has server => (
     isa           => 'Str',
     default       => '127.0.0.1:6379',
     documentation => 'Host:Port of redis server (ex. 127.0.0.1:6379)'
+);
+
+=head2 database
+
+If you want to select another database than default which is 0.
+
+=cut
+
+has database => (
+    is            => 'ro',
+    isa           => 'Int',
+    default       => 0,
+    documentation => 'Database used in a multi-database setup'
 );
 
 =head2 flushall
